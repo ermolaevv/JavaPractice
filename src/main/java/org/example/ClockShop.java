@@ -1,12 +1,8 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeSet;
+import java.util.*;
+import java.util.function.Consumer;
+
 import org.example.IClock;
 import org.example.Time;
 
@@ -71,5 +67,15 @@ public class ClockShop
     @Override
     public Iterator<IClock> iterator() {
         return this.catalog.iterator();
+    }
+
+    @Override
+    public void forEach(Consumer<? super IClock> action) {
+        Iterable.super.forEach(action);
+    }
+
+    @Override
+    public Spliterator<IClock> spliterator() {
+        return Iterable.super.spliterator();
     }
 }
