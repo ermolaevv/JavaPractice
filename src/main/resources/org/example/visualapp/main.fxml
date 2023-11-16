@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.visualapp.MainController">
+   <top>
+      <AnchorPane prefHeight="21.0" prefWidth="700.0" style="-fx-background-color: #2E3348;" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_CENTER" layoutX="206.0" layoutY="-5.0" prefHeight="128.0" prefWidth="288.0" text="ClockShop" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="58.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_CENTER" layoutX="462.0" layoutY="63.0" prefHeight="35.0" prefWidth="94.0" text="registry" textFill="WHITE" AnchorPane.leftAnchor="462.0" AnchorPane.rightAnchor="145.0">
+               <font>
+                  <Font name="Matura MT Script Capitals" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <Pane prefHeight="86.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="name" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="366.0" text="Xiaomi" />
+            <TextField fx:id="price" layoutX="391.0" layoutY="14.0" text="1000" />
+            <Button layoutX="14.0" layoutY="47.0" mnemonicParsing="false" onAction="#addClock" prefHeight="25.0" prefWidth="526.0" text="Добавить" />
+            <CheckBox fx:id="withSeconds" layoutX="554.0" layoutY="51.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="132.0" text="Поддержка секунд" />
+         </children>
+      </Pane>
+   </bottom>
+   <center>
+      <ScrollPane prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <GridPane fx:id="allClocks">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="65.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+   </center>
+   <right>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+            <VBox>
+               <children>
+                  <AnchorPane prefHeight="50.0" prefWidth="158.0">
+                     <children>
+                        <Label layoutX="10.0" prefHeight="54.0" prefWidth="138.0" text="Самое часто встречающееся имя" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="61.0" prefWidth="158.0">
+                     <children>
+                        <Label fx:id="MostCommon" layoutX="68.0" text="н/д" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Label layoutX="31.0" prefHeight="46.0" prefWidth="97.0" text="Максимальная цена" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane>
+                     <children>
+                        <Label fx:id="MaxPrice" layoutX="68.0" text="н/д" textAlignment="CENTER">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <top>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <AnchorPane prefHeight="67.0" prefWidth="158.0">
+                                 <children>
+                                    <Button layoutX="8.0" layoutY="7.0" mnemonicParsing="false" onAction="#setTime" prefHeight="25.0" prefWidth="143.0" text="Задать время для всех" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="184.0" prefWidth="158.0">
+                                 <children>
+                                    <Button layoutX="8.0" mnemonicParsing="false" onAction="#timeShift" prefHeight="44.0" prefWidth="143.0" text="Перевести время для всех" textAlignment="CENTER" wrapText="true" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
+                     </top>
+                     <bottom>
+                        <AnchorPane BorderPane.alignment="CENTER">
+                           <children>
+                              <Button layoutX="8.0" mnemonicParsing="false" onAction="#clear" prefHeight="25.0" prefWidth="143.0" text="Очистить реестр" />
+                           </children>
+                        </AnchorPane>
+                     </bottom>
+                  </BorderPane>
+               </children>
+            </VBox>
+        </items>
+      </SplitPane>
+   </right>
+</BorderPane>

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.sources;
 
 public class Time {
     private int hours = 0;

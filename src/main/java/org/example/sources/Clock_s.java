@@ -1,7 +1,4 @@
-package org.example;
-
-import org.example.Clock;
-import org.example.Time;
+package org.example.sources;
 
 public class Clock_s
         extends Clock {
@@ -14,6 +11,10 @@ public class Clock_s
         super(name, price);
     }
 
+    @Override
+    public String getTime() {
+        return String.format("%02d:%02d:%02d", this.hours, this.minutes, this.seconds);
+    }
     @Override
     public String toString() {
         return this.name + String.format(" (%02d:%02d:%02d) ", this.hours, this.minutes, this.seconds) + this.price;

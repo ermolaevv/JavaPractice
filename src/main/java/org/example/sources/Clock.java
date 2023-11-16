@@ -1,9 +1,6 @@
-package org.example;
+package org.example.sources;
 
-import org.example.IClock;
-import org.example.Time;
-
-class Clock
+public class Clock
         implements IClock {
     protected int hours = 0;
     protected int minutes = 0;
@@ -28,6 +25,9 @@ class Clock
 
     public String getName() {
         return this.name;
+    }
+    public String getTime() {
+        return String.format("%02d:%02d", this.hours, this.minutes);
     }
 
     public void timeShift(Time time) {

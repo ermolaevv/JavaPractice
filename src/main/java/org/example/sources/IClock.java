@@ -1,13 +1,13 @@
-package org.example;
+package org.example.sources;
 
-import org.example.Time;
 
 public interface IClock {
     public double getPrice();
 
     public String getName();
 
-    public void setStartTime(Time var1);
+    public String getTime();
 
+    public void setStartTime(Time var1);
     public void timeShift(Time var1);
 }

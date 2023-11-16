@@ -1,10 +1,6 @@
-package org.example;
+package org.example.sources;
 
 import java.util.Random;
-import org.example.Clock;
-import org.example.Clock_s;
-import org.example.EClockTypes;
-import org.example.IClock;
 
 public class ClockFactory {
     private final double minPrice = 1.0;
