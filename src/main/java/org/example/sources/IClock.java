@@ -10,4 +10,6 @@ public interface IClock {
 
     public void setStartTime(Time var1);
     public void timeShift(Time var1);
+    public void setID(int ID);
+    public int getID();
 }

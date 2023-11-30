@@ -43,6 +43,7 @@ public class ClockElementController {
             public void handle(ActionEvent t) {
                 try {
                     clock.setStartTime(MainController.enterTime());
+                    mainController.cs.syncTime(clock);
                     mainController.event(mainController.cs);
 
                 } catch (Exception e) {
@@ -54,6 +55,7 @@ public class ClockElementController {
             public void handle(ActionEvent t) {
                 try {
                     clock.timeShift(MainController.enterTime());
+                    mainController.cs.syncTime(clock);
                     mainController.event(mainController.cs);
 
                 } catch (Exception e) {

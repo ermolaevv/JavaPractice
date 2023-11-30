@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import org.example.sources.*;
 
 import javafx.event.ActionEvent;
@@ -19,9 +19,7 @@ public class MainController implements IOserver {
     ClockShop cs = BClockShop.build();
 
     public MainController(){
-
         cs.sub(this);
-
     }
 
     @FXML
@@ -48,8 +46,6 @@ public class MainController implements IOserver {
         }
 
         cs.addClock(clock);
-        MaxPrice.setText(String.valueOf(cs.getInfoMaxPrice().getPrice()));
-        MostCommon.setText(cs.getMostCommon());
     }
     @FXML
     public void timeShift(ActionEvent actionEvent) throws Exception {
@@ -62,39 +58,60 @@ public class MainController implements IOserver {
     }
     @FXML
     public void clear(ActionEvent actionEvent) {
-        cs.clear();
-        MaxPrice.setText("н/д");
-        MostCommon.setText("н/д");
+        Alert.AlertType type = Alert.AlertType.CONFIRMATION;
+        Alert alert = new Alert(type, "");
+
+        alert.initModality(Modality.APPLICATION_MODAL);
+
+        alert.setHeaderText("Подтвердите действие");
+        alert.setContentText("Это полностью очистит базу данных, вы уверены?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            cs.clear();
+            MaxPrice.setText("н/д");
+            MostCommon.setText("н/д");
+        }
     }
     @Override
 
     public void event(ClockShop cs) {
 
-        allClocks.getChildren().clear();
+        if (allClocks != null) {
+            allClocks.getChildren().clear();
 
-        for (IClock p: cs) {
+            for (IClock p: cs) {
 
-            try {
+                try {
 
-                ClockElementController cec = new ClockElementController(this);
+                    ClockElementController cec = new ClockElementController(this);
 
-                FXMLLoader fxmlLoader = new FXMLLoader(ClockElementController.class.getResource("ClockElement.fxml"));
-                fxmlLoader.setController(cec);
+                    FXMLLoader fxmlLoader = new FXMLLoader(ClockElementController.class.getResource("ClockElement.fxml"));
+                    fxmlLoader.setController(cec);
 
-                Parent root = fxmlLoader.load();
-                cec.setElement(p);
+                    Parent root = fxmlLoader.load();
+                    cec.setElement(p);
 
 
 
-                allClocks.addColumn(0, root);
-            } catch (IOException e) {
+                    allClocks.addColumn(0, root);
+                } catch (IOException e) {
 
-                throw new RuntimeException(e);
+                    throw new RuntimeException(e);
+
+                }
 
             }
 
-        }
+            IClock clock = cs.getInfoMaxPrice();
+            if (clock == null)
+                MaxPrice.setText("н/д");
+            else
+                MaxPrice.setText(String.valueOf(clock.getPrice()));
 
+            MostCommon.setText(cs.getMostCommon());
+
+        }
     }
 
     public static Time enterTime() throws Exception {
@@ -117,11 +134,14 @@ public class MainController implements IOserver {
                 case 2:
                     hours = tmp[0];
                     minutes = tmp[1];
+                    break;
+                default:
+                    throw new RuntimeException();
             }
             return new Time(hours, minutes, seconds);
         }
-        return new Time();
+        else
+            throw new RuntimeException();
     }
 }
-
 

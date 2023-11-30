@@ -49,9 +49,8 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         try {
-            Parent parent = FXMLLoader.load(
-                    Objects.requireNonNull(getClass().getResource("main.fxml"))
-            );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+            Parent parent = loader.load();
             Scene scene = new Scene(parent);
             stage.setScene(scene);
             stage.setTitle("Clock Shop");
@@ -61,6 +60,8 @@ public class Main extends Application{
                     ).openStream())
             );
             stage.show();
+
+            loader.<MainController>getController().event(BClockShop.build());
         }
         catch (IOException | NullPointerException e) {
             e.printStackTrace();

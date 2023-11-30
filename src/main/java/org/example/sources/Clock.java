@@ -6,8 +6,15 @@ public class Clock
     protected int minutes = 0;
     protected String name = "";
     protected double price = 0.0;
-
+    protected int ID;
     public Clock() {
+    }
+
+
+    public Clock(int ID, String name, double price) {
+        this.ID = ID;
+        this.name = name;
+        this.price = price;
     }
 
     public Clock(String name, double price) {
@@ -25,6 +32,12 @@ public class Clock
 
     public String getName() {
         return this.name;
+    }
+    public int getID() {
+        return this.ID;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
     }
     public String getTime() {
         return String.format("%02d:%02d", this.hours, this.minutes);

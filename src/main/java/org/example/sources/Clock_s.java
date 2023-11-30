@@ -10,6 +10,9 @@ public class Clock_s
     public Clock_s(String name, double price) {
         super(name, price);
     }
+    public Clock_s(int ID, String name, double price) {
+        super(ID, name, price);
+    }
 
     @Override
     public String getTime() {
