@@ -1,6 +1,6 @@
 # Практика по Java
-![](https://tokei.rs/b1/github/ermolaevv/JavaPractice)
-
+<!-- ![](https://tokei.rs/b1/github/ermolaevv/JavaPractice) -->
+![](https://tokei.ekzhang.com/b1/github/ermolaevv/JavaPractice)
 ## Используемые инструменты
 
   - Система контроля версий [Git]. Рекомендуется использовать один из следующих клиентов на выбор:
